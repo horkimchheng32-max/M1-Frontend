@@ -13,7 +13,7 @@ export default function PersonCard({ p }: { p: Person }) {
         <p className="mt-3 flex-1 text-sm text-mute">{p.bio}</p>
         <ul className="mt-4 flex gap-2">
           {p.socials.map((x) => (
-            <li key={x.label}><a href={x.href} aria-label={`${p.name} on ${x.label}`} className="grid h-9 w-9 place-items-center border border-line text-lg hover:border-brand hover:text-brand"><i className={x.icon} /></a></li>
+            <li key={x.label}><a href={x.href} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} on ${x.label}`} className="grid h-9 w-9 place-items-center border border-line text-lg hover:border-brand hover:text-brand"><i className={x.icon} /></a></li>
           ))}
         </ul>
       </div>

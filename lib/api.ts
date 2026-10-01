@@ -9,13 +9,21 @@ const list = (j: any) => (Array.isArray(j) ? j : j?.data ?? j?.content ?? j?.ite
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const one = (j: any) => j?.data ?? j;
 
+// if api fails show fake data & terminal message about error
 async function load<T>(path: string, pick: (j: unknown) => T, fallback: T): Promise<T> {
   try {
     const r = await fetch(API + path, { next: { revalidate: 60 } });
-    if (!r.ok) throw new Error(String(r.status));
-    const v = pick(await r.json());
-    return (Array.isArray(v) && v.length === 0 ? fallback : v) as T;
-  } catch {
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const json = await r.json();
+    console.log(`[api] ${path} raw:`, JSON.stringify(json).slice(0, 500));
+    const v = pick(json);
+    if (Array.isArray(v) && v.length === 0) {
+      console.warn(`[api] ${path} returned an empty list, using mock data`);
+      return fallback;
+    }
+    return v as T;
+  } catch (err) {
+    console.error(`[api] ${path} FAILED, using mock data:`, err);
     return fallback;
   }
 }

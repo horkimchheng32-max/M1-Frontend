@@ -14,4 +14,5 @@ export const team: Person[] = [
   { name: "Kao Sengheang", role: "", bio: "Member",  photo:"/team-logos/members/kimchheng.jpg" ,socials: s() },
   { name: "Borey Sothearith", role: "", bio: "Member", photo:"/team-logos/members/sothearit.jpg" , socials: s() },
   { name: "Dy Chhean", role: "", bio: "Member", photo:"/team-logos/members/kimchheng.jpg" , socials: s() },
+  { name: "Eam Sambath", role: "", bio: "Member", photo: "/team-logos/members/sambath.jpg", socials: s("https://www.linkedin.com/in/eam-sambath-7244a5379/", "https://github.com/sambath09674-creator") },
 ];
